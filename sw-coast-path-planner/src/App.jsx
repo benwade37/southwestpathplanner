@@ -1,9 +1,10 @@
 import "./App.css";
+import { useState } from "react";
 import WalkCard from "./components/WalkCard";
 
 function App() {
-  const walks = [
-    {
+  const [walks, setWalks] = useState([
+    {  
       id: 1,
       name: "Welcombe Mouth → Hartland Quay",
       distance: "5.5miles",
@@ -51,17 +52,30 @@ function App() {
       time: "2.5 hours",
       completed: false,
     },
-  ];
+  ]);
+
+  function handleComplete(id) {
+    const updatedWalks = walks.map((walk) => {
+      if (walk.id === id) {
+        return { ...walk, completed: true,
+      }
+  }
+
+    return walk;
+    });
+
+  setWalks(updatedWalks);
+}
 
   return (
     <div>
       <h1 className="app-title">SW Coast Path Planner</h1>
 
-      <p className="app-intro">Track your progress along the Path.</p>
+      <p className="app-intro">Track your progress along the path.</p>
 
       <div className="walk-list">
       {walks.map((walk) => (
-      <WalkCard key={walk.id} walk={walk} />
+      <WalkCard key={walk.id} walk={walk} onComplete={handleComplete} />
     ))}
     </div>
     </div>

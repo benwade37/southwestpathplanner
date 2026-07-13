@@ -1,4 +1,4 @@
-function WalkCard({ walk }) {
+function WalkCard({ walk, onComplete }) {
   return (
     <div className="walk-card">
       <h2>{walk.name}</h2>
@@ -14,7 +14,15 @@ function WalkCard({ walk }) {
       <p>
       <strong>Estimated Time:</strong> {walk.time}
       </p>
-    </div>
+
+      <p>
+        <strong>Status:</strong>{" "}
+        {walk.completed ? "✅ Completed" : "⭕ To Do"}
+      </p>
+      <button onClick={() => onComplete(walk.id)}>
+      Mark Complete
+      </button>
+      </div>
   );
 }
 
