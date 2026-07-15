@@ -57,8 +57,9 @@ function App() {
   function handleComplete(id) {
     const updatedWalks = walks.map((walk) => {
       if (walk.id === id) {
-        return { ...walk, completed: true,
-      }
+        return { ...walk, 
+        completed: !walk.completed,
+      };
   }
 
     return walk;

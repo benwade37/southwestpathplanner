@@ -20,7 +20,7 @@ function WalkCard({ walk, onComplete }) {
         {walk.completed ? "✅ Completed" : "⭕ To Do"}
       </p>
       <button onClick={() => onComplete(walk.id)}>
-      Mark Complete
+      {walk.completed ? "Mark as To Do" : "Mark Complete"}
       </button>
       </div>
   );
