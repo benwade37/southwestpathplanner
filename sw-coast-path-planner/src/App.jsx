@@ -1,13 +1,14 @@
 import "./App.css";
 import { useState } from "react";
 import WalkCard from "./components/WalkCard";
+import ProgressCard from "./components/ProgressCard";
 
 function App() {
   const [walks, setWalks] = useState([
     {  
       id: 1,
       name: "Welcombe Mouth → Hartland Quay",
-      distance: "5.5miles",
+      distance: "5.5 miles",
       difficulty: "Hard",
       time: "2 hours",
       completed: false,
@@ -54,6 +55,13 @@ function App() {
     },
   ]);
 
+const completedWalks = walks.filter((walk) => walk.completed);
+const completedCount = completedWalks.length;
+
+const progressPercentage = Math.round(
+  (completedCount / walks.length) * 100
+);
+
   function handleComplete(id) {
     const updatedWalks = walks.map((walk) => {
       if (walk.id === id) {
@@ -70,13 +78,19 @@ function App() {
 
   return (
     <div>
-      <h1 className="app-title">SW Coast Path Planner</h1>
+    <h1 className="app-title">SW Coast Path Planner</h1>
 
-      <p className="app-intro">Track your progress along the path.</p>
+    <p className="app-intro">Track your progress along the path.</p>
+    
+    <ProgressCard
+    completedCount={completedCount}
+    totalWalks={walks.length}
+    progressPercentage={progressPercentage}
+    />
 
-      <div className="walk-list">
-      {walks.map((walk) => (
-      <WalkCard key={walk.id} walk={walk} onComplete={handleComplete} />
+    <div className="walk-list">
+    {walks.map((walk) => (
+    <WalkCard key={walk.id} walk={walk} onComplete={handleComplete} />
     ))}
     </div>
     </div>
