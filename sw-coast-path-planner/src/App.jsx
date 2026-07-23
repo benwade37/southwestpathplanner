@@ -1,27 +1,12 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import WalkCard from "./components/WalkCard";
 import ProgressCard from "./components/ProgressCard";
-import { initialWalks } from "./data/walks";
+import useWalks from "./hooks/useWalks";
 
 function App() {
-  const [walks, setWalks] = useState(() => {
-
-    const savedWalks = localStorage.getItem("swcp-walks");
-
-    if (savedWalks) {
-      return JSON.parse(savedWalks);
-    }
-
-    return initialWalks;
-  });
-
+  const { walks, handleComplete, handleFavorite } = useWalks();
   const [filter, setFilter] = useState("all");
-
-  useEffect(() => {
-    console.log("Saving walks to Local Storage:", walks);
-    localStorage.setItem("swcp-walks", JSON.stringify(walks));
-  }, [walks]);
 
   const completedWalks = walks.filter((walk) => walk.completed);
   const completedCount = completedWalks.length;
@@ -41,21 +26,6 @@ function App() {
 
     return true;
   });
-
-  function handleComplete(id) {
-    const updatedWalks = walks.map((walk) => {
-      if (walk.id === id) {
-        return {
-          ...walk,
-          completed: !walk.completed,
-        };
-      }
-
-      return walk;
-    });
-
-    setWalks(updatedWalks);
-  }
 
   return (
     <div>
@@ -98,6 +68,7 @@ function App() {
             key={walk.id}
             walk={walk}
             onComplete={handleComplete}
+            onFavorite={handleFavorite}
           />
         ))}
       </div>

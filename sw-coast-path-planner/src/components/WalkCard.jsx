@@ -1,4 +1,4 @@
-function WalkCard({ walk, onComplete }) {
+function WalkCard({ walk, onComplete, onFavorite }) {
   return (
     <div className="walk-card">
       <h2>{walk.name}</h2>
@@ -21,6 +21,10 @@ function WalkCard({ walk, onComplete }) {
       </p>
       <button onClick={() => onComplete(walk.id)}>
       {walk.completed ? "Mark as To Do" : "Mark Complete"}
+      </button>
+
+      <button onClick={() => onFavorite(walk.id)}>
+      {walk.favorite ? "⭐ Favourite" : "☆ Add Favourite"}
       </button>
       </div>
   );

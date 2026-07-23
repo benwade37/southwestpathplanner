@@ -6,6 +6,7 @@ export const initialWalks = [
     difficulty: "Hard",
     time: "2 hours",
     completed: false,
+    favorite: false,
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ export const initialWalks = [
     difficulty: "Hard",
     time: "3 hours",
     completed: false,
+    favorite: false,
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ export const initialWalks = [
     difficulty: "Moderate",
     time: "2 hours",
     completed: false,
+    favorite: false,
   },
   {
     id: 4,
@@ -30,6 +33,7 @@ export const initialWalks = [
     difficulty: "Moderate",
     time: "1.5 hours",
     completed: false,
+    favorite: false,
   },
   {
     id: 5,
@@ -38,6 +42,7 @@ export const initialWalks = [
     difficulty: "Moderate",
     time: "4 hours",
     completed: false,
+    favorite: false,
   },
   {
     id: 6,
@@ -46,5 +51,6 @@ export const initialWalks = [
     difficulty: "Moderate",
     time: "2.5 hours",
     completed: false,
+    favorite: false,
   },
 ];
