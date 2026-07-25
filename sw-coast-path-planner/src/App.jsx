@@ -24,6 +24,10 @@ function App() {
       return !walk.completed;
     }
 
+    if (filter === "favorites") {
+      return walk.favorite;
+    }
+
     return true;
   });
 
@@ -60,10 +64,17 @@ function App() {
         >
           To Do
         </button>
-      </div>
 
-      <div className="walk-list">
-        {filteredWalks.map((walk) => (
+      <button
+      className={filter === "favorites" ? "active" : ""}
+      onClick={() => setFilter("favorites")}
+        >
+    ⭐ Favourites
+  </button>
+</div>
+
+<div className="walk-list">
+    {filteredWalks.map((walk) => (
           <WalkCard
             key={walk.id}
             walk={walk}
@@ -74,6 +85,6 @@ function App() {
       </div>
     </div>
   );
-}
+} 
 
 export default App;
