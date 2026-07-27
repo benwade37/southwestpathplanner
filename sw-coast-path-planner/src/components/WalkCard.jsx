@@ -1,4 +1,4 @@
-function WalkCard({ walk, onComplete, onFavorite }) {
+function WalkCard({ walk, onStatusChange, onFavorite }) {
   return (
     <div className="walk-card">
       <h2>{walk.name}</h2>
@@ -12,21 +12,45 @@ function WalkCard({ walk, onComplete, onFavorite }) {
       </p>
 
       <p>
-      <strong>Estimated Time:</strong> {walk.time}
+        <strong>Estimated Time:</strong> {walk.time}
       </p>
 
       <p>
         <strong>Status:</strong>{" "}
-        {walk.completed ? "✅ Completed" : "⭕ To Do"}
+        {walk.status === "completed"
+          ? "✅ Completed"
+          : walk.status === "in-progress"
+          ? "🥾 In Progress"
+          : "⭕ To Do"}
       </p>
-      <button onClick={() => onComplete(walk.id)}>
-      {walk.completed ? "Mark as To Do" : "Mark Complete"}
-      </button>
+
+<div className="status-buttons">
+  <button
+    className={walk.status === "todo" ? "active" : ""}
+    onClick={() => onStatusChange(walk.id, "todo")}
+  >
+    ⭕ To Do
+  </button>
+
+  <button
+    className={walk.status === "in-progress" ? "active" : ""}
+    onClick={() => onStatusChange(walk.id, "in-progress")}
+  >
+    🥾 In Progress
+  </button>
+
+  <button
+    className={walk.status === "completed" ? "active" : ""}
+    onClick={() => onStatusChange(walk.id, "completed")}
+  >
+    ✅ Completed
+  </button>
+</div>
 
       <button onClick={() => onFavorite(walk.id)}>
-      {walk.favorite ? "⭐ Favourite" : "☆ Add Favourite"}
+        {walk.favorite ? "⭐ Favourite" : "☆ Add Favourite"}
       </button>
-      </div>
+    </div>
   );
 }
 

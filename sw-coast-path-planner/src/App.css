@@ -91,6 +91,39 @@
   border-color: #2f7d62;
 }
 
+.status-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.status-buttons button {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  background: white;
+  cursor: pointer;
+}
+
+.status-buttons button.active {
+  background: #2f7d62;
+  color: white;
+  border-color: #2f7d62;
+}
+
+.status-buttons button:hover {
+  background: #f4f4f4;
+}
+
+.status-buttons button.active:hover {
+  background: #2f7d62;
+}
+
+.walk-status {
+  font-weight: bold;
+}
+
 /* Tablet */
 @media (max-width: 768px) {
   #root {

@@ -5,7 +5,7 @@ export const initialWalks = [
     distance: "5.5 miles",
     difficulty: "Hard",
     time: "2 hours",
-    completed: false,
+    stated: "todo", 
     favorite: false,
   },
   {
@@ -14,7 +14,7 @@ export const initialWalks = [
     distance: "10.3 miles",
     difficulty: "Hard",
     time: "3 hours",
-    completed: false,
+    status: "todo",
     favorite: false,
   },
   {
@@ -23,7 +23,7 @@ export const initialWalks = [
     distance: "8.5 miles",
     difficulty: "Moderate",
     time: "2 hours",
-    completed: false,
+    status: "todo",
     favorite: false,
   },
   {
@@ -32,7 +32,7 @@ export const initialWalks = [
     distance: "3.9 miles",
     difficulty: "Moderate",
     time: "1.5 hours",
-    completed: false,
+    status: "todo",
     favorite: false,
   },
   {
@@ -41,7 +41,7 @@ export const initialWalks = [
     distance: "13.8 miles",
     difficulty: "Moderate",
     time: "4 hours",
-    completed: false,
+    status: "todo",
     favorite: false,
   },
   {
@@ -50,7 +50,7 @@ export const initialWalks = [
     distance: "7.6 miles",
     difficulty: "Moderate",
     time: "2.5 hours",
-    completed: false,
+    status: "todo",
     favorite: false,
   },
 ];

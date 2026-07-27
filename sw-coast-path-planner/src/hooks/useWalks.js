@@ -6,7 +6,12 @@ function useWalks() {
     const savedWalks = localStorage.getItem("swcp-walks");
 
     if (savedWalks) {
-      return JSON.parse(savedWalks);
+      const parsedWalks = JSON.parse(savedWalks);
+
+      return parsedWalks.map((walk) => ({
+        ...walk,
+        status: walk.status ?? (walk.completed ? "completed" : "todo"),
+      }));
     }
 
     return initialWalks;
@@ -16,12 +21,12 @@ function useWalks() {
     localStorage.setItem("swcp-walks", JSON.stringify(walks));
   }, [walks]);
 
-  function handleComplete(id) {
+  function handleStatusChange(id, newStatus) {
     const updatedWalks = walks.map((walk) => {
       if (walk.id === id) {
         return {
           ...walk,
-          completed: !walk.completed,
+          status: newStatus,
         };
       }
 
@@ -32,23 +37,23 @@ function useWalks() {
   }
 
   function handleFavorite(id) {
-  const updatedWalks = walks.map((walk) => {
-    if (walk.id === id) {
-      return {
-        ...walk,
-        favorite: !walk.favorite,
-      };
-    }
+    const updatedWalks = walks.map((walk) => {
+      if (walk.id === id) {
+        return {
+          ...walk,
+          favorite: !walk.favorite,
+        };
+      }
 
-    return walk;
-  });
+      return walk;
+    });
 
-  setWalks(updatedWalks);
-}
+    setWalks(updatedWalks);
+  }
 
   return {
     walks,
-    handleComplete,
+    handleStatusChange,
     handleFavorite,
   };
 }

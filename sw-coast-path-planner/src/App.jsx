@@ -5,23 +5,31 @@ import ProgressCard from "./components/ProgressCard";
 import useWalks from "./hooks/useWalks";
 
 function App() {
-  const { walks, handleComplete, handleFavorite } = useWalks();
+  const { walks, handleStatusChange, handleFavorite } = useWalks();
   const [filter, setFilter] = useState("all");
 
-  const completedWalks = walks.filter((walk) => walk.completed);
+  const completedWalks = walks.filter(
+    (walk) => walk.status === "completed"
+  );
+
   const completedCount = completedWalks.length;
 
-  const progressPercentage = Math.round(
-    (completedCount / walks.length) * 100
-  );
+  const progressPercentage =
+    walks.length > 0
+      ? Math.round((completedCount / walks.length) * 100)
+      : 0;
 
   const filteredWalks = walks.filter((walk) => {
     if (filter === "completed") {
-      return walk.completed;
+      return walk.status === "completed";
     }
 
     if (filter === "todo") {
-      return !walk.completed;
+      return walk.status === "todo";
+    }
+
+    if (filter === "in-progress") {
+      return walk.status === "in-progress";
     }
 
     if (filter === "favorites") {
@@ -33,9 +41,11 @@ function App() {
 
   return (
     <div>
-      <h1 className="app-title">SW Coast Path Planner</h1>
+      <h1 className="app-title">SWCP Shlep Smasher</h1>
 
-      <p className="app-intro">Track your progress along the path.</p>
+      <p className="app-intro">
+        Easily track your progress along the path.
+      </p>
 
       <ProgressCard
         completedCount={completedCount}
@@ -52,39 +62,50 @@ function App() {
         </button>
 
         <button
-          className={filter === "completed" ? "active" : ""}
-          onClick={() => setFilter("completed")}
-        >
-          Completed
-        </button>
-
-        <button
           className={filter === "todo" ? "active" : ""}
           onClick={() => setFilter("todo")}
         >
-          To Do
+          ⭕ To Do
         </button>
 
-      <button
-      className={filter === "favorites" ? "active" : ""}
-      onClick={() => setFilter("favorites")}
+        <button
+          className={filter === "in-progress" ? "active" : ""}
+          onClick={() => setFilter("in-progress")}
         >
-    ⭐ Favourites
-  </button>
-</div>
+          🥾 In Progress
+        </button>
 
-<div className="walk-list">
-    {filteredWalks.map((walk) => (
-          <WalkCard
-            key={walk.id}
-            walk={walk}
-            onComplete={handleComplete}
-            onFavorite={handleFavorite}
-          />
-        ))}
+        <button
+          className={filter === "completed" ? "active" : ""}
+          onClick={() => setFilter("completed")}
+        >
+          ✅ Completed
+        </button>
+
+        <button
+          className={filter === "favorites" ? "active" : ""}
+          onClick={() => setFilter("favorites")}
+        >
+          ⭐ Favourites
+        </button>
+      </div>
+
+      <div className="walk-list">
+        {filteredWalks.length > 0 ? (
+          filteredWalks.map((walk) => (
+            <WalkCard
+              key={walk.id}
+              walk={walk}
+              onStatusChange={handleStatusChange}
+              onFavorite={handleFavorite}
+            />
+          ))
+        ) : (
+          <p className="empty-message">No walks found.</p>
+        )}
       </div>
     </div>
   );
-} 
+}
 
 export default App;
