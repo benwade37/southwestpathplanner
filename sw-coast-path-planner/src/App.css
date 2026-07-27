@@ -7,15 +7,24 @@
   box-sizing: border-box;
 }
 
+.app-logo {
+  width: 180px;
+  max-width: 80%;
+  display: block;
+  margin: 0 auto 20px;
+  animation: floatIn 0.8s ease;
+}
+
 .app-title {
-  font-size: 48px;
+  font-size: 52px;
   margin-bottom: 8px;
+  line-height: 1;
 }
 
 .app-intro {
   font-size: 22px;
   color: #666;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
 
 .walk-list {
@@ -122,6 +131,51 @@
 
 .walk-status {
   font-weight: bold;
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.search-container {
+  max-width: 520px;
+  margin: 0 auto 24px;
+}
+
+.search-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.search-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #c8cec9;
+  border-radius: 12px;
+  font: inherit;
+  background: white;
+  box-sizing: border-box;
+}
+
+.search-input:focus {
+  outline: 3px solid rgba(47, 125, 98, 0.2);
+  border-color: #2f7d62;
+}
+
+.search-results {
+  margin-top: 10px;
+  color: #666;
+  font-size: 0.9rem;
 }
 
 /* Tablet */

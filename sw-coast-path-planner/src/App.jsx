@@ -2,11 +2,14 @@ import "./App.css";
 import { useState } from "react";
 import WalkCard from "./components/WalkCard";
 import ProgressCard from "./components/ProgressCard";
+import FilterButtons from "./components/FilterButtons";
 import useWalks from "./hooks/useWalks";
+import ShlepLogoMain3 from "./assets/images/ShlepLogoMain3.png";
 
 function App() {
   const { walks, handleStatusChange, handleFavorite } = useWalks();
   const [filter, setFilter] = useState("all");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const completedWalks = walks.filter(
     (walk) => walk.status === "completed"
@@ -20,31 +23,32 @@ function App() {
       : 0;
 
   const filteredWalks = walks.filter((walk) => {
-    if (filter === "completed") {
-      return walk.status === "completed";
-    }
+  const matchesSearch = walk.name
+    .toLowerCase()
+    .includes(searchTerm.toLowerCase());
 
-    if (filter === "todo") {
-      return walk.status === "todo";
-    }
+  const matchesFilter =
+    filter === "completed"
+      ? walk.status === "completed"
+      : filter === "in-progress"
+      ? walk.status === "in-progress"
+      : filter === "todo"
+      ? walk.status === "todo"
+      : filter === "favorites"
+      ? walk.favorite
+      : true;
 
-    if (filter === "in-progress") {
-      return walk.status === "in-progress";
-    }
-
-    if (filter === "favorites") {
-      return walk.favorite;
-    }
-
-    return true;
-  });
+  return matchesSearch && matchesFilter;
+});
 
   return (
     <div>
-      <h1 className="app-title">SWCP Shlep Smasher</h1>
-
+      <img src={ShlepLogoMain3} alt="Shlep Logo" className="app-logo" />
+      
       <p className="app-intro">
-        Easily track your progress along the path.
+      Track every mile of the coastpath.
+      <br />
+      Celebrate every step.
       </p>
 
       <ProgressCard
@@ -53,43 +57,27 @@ function App() {
         progressPercentage={progressPercentage}
       />
 
-      <div className="filter-buttons">
-        <button
-          className={filter === "all" ? "active" : ""}
-          onClick={() => setFilter("all")}
-        >
-          All
-        </button>
+    <div className="search-container">
+      <label htmlFor="walk-search" className="search-label">
+      Search walks
+      </label>
 
-        <button
-          className={filter === "todo" ? "active" : ""}
-          onClick={() => setFilter("todo")}
-        >
-          ⭕ To Do
-        </button>
+  <input
+    id="walk-search"
+    type="search"
+    value={searchTerm}
+    onChange={(event) => setSearchTerm(event.target.value)}
+    placeholder="Search by place name..."
+    className="search-input"
+  />
+</div>
 
-        <button
-          className={filter === "in-progress" ? "active" : ""}
-          onClick={() => setFilter("in-progress")}
-        >
-          🥾 In Progress
-        </button>
+<p className="search-results">
+  Showing {filteredWalks.length} of {walks.length} walks
+</p>
 
-        <button
-          className={filter === "completed" ? "active" : ""}
-          onClick={() => setFilter("completed")}
-        >
-          ✅ Completed
-        </button>
-
-        <button
-          className={filter === "favorites" ? "active" : ""}
-          onClick={() => setFilter("favorites")}
-        >
-          ⭐ Favourites
-        </button>
-      </div>
-
+      <FilterButtons filter={filter} setFilter={setFilter} />
+      
       <div className="walk-list">
         {filteredWalks.length > 0 ? (
           filteredWalks.map((walk) => (
