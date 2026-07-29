@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 function WalkCard({ walk, onStatusChange, onFavorite }) {
   return (
     <div className="walk-card">
@@ -50,6 +52,13 @@ function WalkCard({ walk, onStatusChange, onFavorite }) {
       <button onClick={() => onFavorite(walk.id)}>
         {walk.favorite ? "⭐ Favourite" : "☆ Add Favourite"}
       </button>
+
+  <Link
+  to={`/walk/${walk.id}`}
+  className="details-link"
+>
+  View Details →
+</Link>
     </div>
   );
 }
