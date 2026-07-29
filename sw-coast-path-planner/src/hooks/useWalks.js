@@ -2,21 +2,33 @@ import { useEffect, useState } from "react";
 import { initialWalks } from "../data/walks";
 
 function useWalks() {
-  const [walks, setWalks] = useState(() => {
-    const savedWalks = localStorage.getItem("swcp-walks");
+const [walks, setWalks] = useState(() => {
+  const savedWalks = localStorage.getItem("swcp-walks");
 
-    if (savedWalks) {
-      const parsedWalks = JSON.parse(savedWalks);
+  if (savedWalks) {
+    const parsedWalks = JSON.parse(savedWalks);
 
-      return parsedWalks.map((walk) => ({
-        ...walk,
-        status: walk.status ?? (walk.completed ? "completed" : "todo"),
-      }));
-    }
+    return initialWalks.map((initialWalk) => {
+      const savedWalk = parsedWalks.find(
+        (walk) => walk.id === initialWalk.id
+      );
 
-    return initialWalks;
-  });
+      if (savedWalk) {
+        return {
+          ...initialWalk,
+          ...savedWalk,
+          status:
+            savedWalk.status ??
+            (savedWalk.completed ? "completed" : "todo"),
+        };
+      }
 
+      return initialWalk;
+    });
+  }
+
+  return initialWalks;
+});
   useEffect(() => {
     localStorage.setItem("swcp-walks", JSON.stringify(walks));
   }, [walks]);
