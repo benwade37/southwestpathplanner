@@ -21,7 +21,7 @@ function WalkDetail({ walks }) {
         ← Back to all walks
       </Link>
 
-      <h1>{walk.name}</h1>
+      <h1>{walk.start} → {walk.end}</h1>
 
       <p>
         <strong>Distance:</strong> {walk.distance}

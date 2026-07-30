@@ -17,6 +17,8 @@ function App() {
   const [filter, setFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
 
+  const [direction, setDirection] = useState("anticlockwise");
+
   const completedWalks = walks.filter(
     (walk) => walk.status === "completed"
   );
@@ -29,9 +31,11 @@ function App() {
       : 0;
 
   const filteredWalks = walks.filter((walk) => {
-    const matchesSearch = walk.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
+    const walkName = `${walk.start} → ${walk.end}`;
+
+    const matchesSearch = walkName
+    .toLowerCase()
+    .includes(searchTerm.toLowerCase());
 
     const matchesFilter =
       filter === "completed"
@@ -46,6 +50,11 @@ function App() {
 
     return matchesSearch && matchesFilter;
   });
+
+  const displayedWalks =
+    direction === "clockwise"
+    ? [...filteredWalks].reverse()
+    : filteredWalks;
 
   return (
     <Routes>
@@ -71,6 +80,22 @@ function App() {
               progressPercentage={progressPercentage}
             />
 
+    <div className="direction-switch">
+    <button
+    onClick={() => setDirection("anticlockwise")}
+    className={direction === "anticlockwise" ? "active" : ""}
+  >
+    Minehead → Poole
+    </button>
+
+    <button
+    onClick={() => setDirection("clockwise")}
+    className={direction === "clockwise" ? "active" : ""}
+    >
+    Poole → Minehead
+    </button>
+    </div>
+
             <SearchBar
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
@@ -82,11 +107,12 @@ function App() {
             />
 
             <div className="walk-list">
-              {filteredWalks.length > 0 ? (
-                filteredWalks.map((walk) => (
+              {displayedWalks.length > 0 ? (
+                displayedWalks.map((walk) => (
                   <WalkCard
                     key={walk.id}
                     walk={walk}
+                    direction={direction}
                     onStatusChange={handleStatusChange}
                     onFavorite={handleFavorite}
                   />

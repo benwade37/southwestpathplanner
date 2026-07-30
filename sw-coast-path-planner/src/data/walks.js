@@ -1,7 +1,8 @@
 export const initialWalks = [
   {
     id: 1,
-    name: "Welcombe Mouth → Hartland Quay",
+    start: "Welcombe Mouth",
+    end: "Hartland Quay",
     distance: "5.5 miles",
     difficulty: "Hard",
     time: "2 hours",
@@ -10,7 +11,8 @@ export const initialWalks = [
   },
   {
     id: 2,
-    name: "Hartland Quay → Clovelly",
+    start: "Hartland Quay",
+    end: "Clovelly",
     distance: "10.3 miles",
     difficulty: "Hard",
     time: "3 hours",
@@ -19,7 +21,8 @@ export const initialWalks = [
   },
   {
     id: 3,
-    name: "Portreath → St Agnes",
+    start: "Portreath",
+    end: "St Agnes",
     distance: "8.5 miles",
     difficulty: "Moderate",
     time: "3 hours",
@@ -28,7 +31,8 @@ export const initialWalks = [
   },
   {
     id: 4,
-    name: "St Agnes → Perranporth",
+    start: "St Agnes",
+    end: "Perranporth",
     distance: "3.9 miles",
     difficulty: "Moderate",
     time: "1.5 hours",
@@ -37,7 +41,8 @@ export const initialWalks = [
   },
   {
     id: 5,
-    name: "Perranporth → Newquay",
+    start: "Perranporth",
+    end: "Newquay",
     distance: "5.2 miles",
     difficulty: "Moderate",
     time: "4.5 hours",
@@ -46,7 +51,8 @@ export const initialWalks = [
   },
   {
     id: 6,
-    name: "Post Isaac → Tintagel",
+    start: "Port Isaac",
+    end: "Tintagel",
     distance: "9.1 miles",
     difficulty: "Moderate",
     time: "4 hours",
@@ -55,7 +61,8 @@ export const initialWalks = [
   },
   {
     id: 7,
-    name: "Tintagel → Boscastle",
+    start: "Tintagel",
+    end: "Boscastle",
     distance: "5 miles",
     difficulty: "Moderate",
     time: "2.5 hours",
@@ -64,7 +71,8 @@ export const initialWalks = [
   },
   {
     id: 8,
-    name: "Boscastle → Crackington Haven",
+    start: "Boscastle",
+    end: "Crackington Haven",
     distance: "6.5 miles",
     difficulty: "Moderate",
     time: "3 hours",
@@ -73,7 +81,8 @@ export const initialWalks = [
   },
   {
     id: 9,
-    name: "Crackington Haven → Bude",
+    start: "Crackington Haven",
+    end: "Bude",
     distance: "7.2 miles",
     difficulty: "Moderate",
     time: "3.5 hours",

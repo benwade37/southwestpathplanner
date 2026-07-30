@@ -1,9 +1,13 @@
 import { Link } from "react-router";
 
-function WalkCard({ walk, onStatusChange, onFavorite }) {
+function WalkCard({ walk, direction, onStatusChange, onFavorite }) {
   return (
     <div className="walk-card">
-      <h2>{walk.name}</h2>
+  <h2>
+  {direction === "anticlockwise"
+    ? `${walk.start} → ${walk.end}`
+    : `${walk.end} → ${walk.start}`}
+  </h2>
 
       <p>
         <strong>Distance:</strong> {walk.distance}
