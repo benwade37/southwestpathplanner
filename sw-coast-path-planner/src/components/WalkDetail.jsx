@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router";
 
-function WalkDetail({ walks }) {
+function WalkDetail({ walks, direction }) {
   const { id } = useParams();
 
   const walk = walks.find((walk) => walk.id === Number(id));
@@ -15,36 +15,52 @@ function WalkDetail({ walks }) {
     );
   }
 
-  return (
-    <main className="walk-detail">
-      <Link to="/" className="back-link">
-        ← Back to all walks
-      </Link>
+  const walkTitle =
+    direction === "anticlockwise"
+      ? `${walk.start} → ${walk.end}`
+      : `${walk.end} → ${walk.start}`;
 
-      <h1>{walk.start} → {walk.end}</h1>
+return (
+  <main className="walk-detail">
+    <Link to="/" className="back-link">
+      ← Back to all walks
+    </Link>
 
-      <p>
-        <strong>Distance:</strong> {walk.distance}
-      </p>
+    <h1>{walkTitle}</h1>
 
-      <p>
-        <strong>Difficulty:</strong> {walk.difficulty}
-      </p>
+    <div className="walk-stats">
+      <div className="walk-stat">
+        <span className="walk-stat-icon">🥾</span>
+        <span className="walk-stat-label">Distance</span>
+        <strong>{walk.distance}</strong>
+      </div>
 
-      <p>
-        <strong>Estimated time:</strong> {walk.time}
-      </p>
+      <div className="walk-stat">
+        <span className="walk-stat-icon">⛰️</span>
+        <span className="walk-stat-label">Difficulty</span>
+        <strong>{walk.difficulty}</strong>
+      </div>
 
-      <p>
-        <strong>Status:</strong>{" "}
-        {walk.status === "completed"
-          ? "✅ Completed"
-          : walk.status === "in-progress"
-            ? "🥾 In Progress"
-            : "⭕ To Do"}
-      </p>
-    </main>
-  );
+      <div className="walk-stat">
+        <span className="walk-stat-icon">🕒</span>
+        <span className="walk-stat-label">Estimated time</span>
+        <strong>{walk.time}</strong>
+      </div>
+
+      <div className="walk-stat">
+        <span className="walk-stat-icon">📍</span>
+        <span className="walk-stat-label">Status</span>
+        <strong>
+          {walk.status === "completed"
+            ? "Completed"
+            : walk.status === "in-progress"
+              ? "In Progress"
+              : "To Do"}
+        </strong>
+      </div>
+    </div>
+  </main>
+);
 }
 
 export default WalkDetail;

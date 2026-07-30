@@ -127,7 +127,7 @@ function App() {
 
       <Route
         path="/walk/:id"
-        element={<WalkDetail walks={walks} />}
+        element={<WalkDetail walks={walks} direction={direction} />}
       />
     </Routes>
   );
