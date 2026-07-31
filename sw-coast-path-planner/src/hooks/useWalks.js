@@ -16,11 +16,11 @@ const [walks, setWalks] = useState(() => {
       if (savedWalk) {
         return {
           ...initialWalk,
-          ...savedWalk,
           status:
             savedWalk.status ??
             (savedWalk.completed ? "completed" : "todo"),
-        };
+          favorite: savedWalk.favorite ?? false,
+    };
       }
 
       return initialWalk;
