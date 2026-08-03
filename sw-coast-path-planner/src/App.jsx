@@ -9,7 +9,7 @@ import SearchBar from "./components/SearchBar";
 import WalkDetail from "./components/WalkDetail";
 
 import useWalks from "./hooks/useWalks";
-import ShlepLogoMain3 from "./assets/images/ShlepLogoMain3.png";
+import ShlepLogo5 from "./assets/images/ShlepLogo5.png";
 
 function App() {
   const { walks, handleStatusChange, handleFavorite } = useWalks();
@@ -31,11 +31,19 @@ function App() {
       : 0;
 
   const filteredWalks = walks.filter((walk) => {
-    const walkName = `${walk.start} → ${walk.end}`;
+   const searchableText = [
+  walk.start,
+  walk.end,
+  walk.location,
+  walk.description,
+  ...(walk.highlights ?? []),
+]
+  .join(" ")
+  .toLowerCase();
 
-    const matchesSearch = walkName
-    .toLowerCase()
-    .includes(searchTerm.toLowerCase());
+const matchesSearch = searchableText.includes(
+  searchTerm.trim().toLowerCase()
+);
 
     const matchesFilter =
       filter === "completed"
@@ -63,7 +71,7 @@ function App() {
         element={
           <div>
             <img
-              src={ShlepLogoMain3}
+              src={ShlepLogo5}
               alt="Shlep Logo"
               className="app-logo"
             />

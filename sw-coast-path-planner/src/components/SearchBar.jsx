@@ -10,7 +10,7 @@ function SearchBar({ searchTerm, setSearchTerm }) {
         type="search"
         value={searchTerm}
         onChange={(event) => setSearchTerm(event.target.value)}
-        placeholder="Search by place name..."
+        placeholder="Search places, scenery or highlights..."
         className="search-input"
       />
     </div>
