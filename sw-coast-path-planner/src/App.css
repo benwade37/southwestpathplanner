@@ -36,30 +36,40 @@
 .walk-card {
   border: 1px solid #ddd;
   border-radius: 16px;
-  padding: 24px;
+  padding: 0 24px 24px;
   text-align: left;
   background: white;
+  overflow: hidden;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.walk-card h2 {
-  margin-top: 0;
-  font-size: 24px;
-}
-
-.walk-card p {
-  font-size: 18px;
-  margin: 8px 0;
-}
-
-.walk-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .walk-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.walk-card-image-link {
+  display: block;
+  margin: 0 -24px 22px;
+  overflow: hidden;
+}
+
+.walk-card-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.walk-card-image-link:hover .walk-card-image {
+  transform: scale(1.03);
+}
+
+.walk-card h2 {
+  margin-top: 0;
 }
 
 .progress-bar {

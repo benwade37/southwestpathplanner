@@ -32,11 +32,11 @@ function App() {
 
   const filteredWalks = walks.filter((walk) => {
    const searchableText = [
-  walk.start,
-  walk.end,
-  walk.location,
-  walk.description,
-  ...(walk.highlights ?? []),
+    walk.start,
+    walk.end,
+    walk.location,
+    walk.description,
+    ...(walk.highlights ?? []),
 ]
   .join(" ")
   .toLowerCase();
@@ -45,19 +45,19 @@ const matchesSearch = searchableText.includes(
   searchTerm.trim().toLowerCase()
 );
 
-    const matchesFilter =
-      filter === "completed"
-        ? walk.status === "completed"
-        : filter === "in-progress"
-          ? walk.status === "in-progress"
-          : filter === "todo"
-            ? walk.status === "todo"
-            : filter === "favorites"
-              ? walk.favorite
-              : true;
+const matchesFilter =
+  filter === "completed"
+    ? walk.status === "completed"
+    : filter === "in-progress"
+      ? walk.status === "in-progress"
+      : filter === "todo"
+        ? walk.status === "todo"
+        : filter === "favorites"
+          ? walk.favorite
+          : true;
 
-    return matchesSearch && matchesFilter;
-  });
+  return matchesSearch && matchesFilter;
+});
 
   const displayedWalks =
     direction === "clockwise"
@@ -88,8 +88,8 @@ const matchesSearch = searchableText.includes(
               progressPercentage={progressPercentage}
             />
 
-    <div className="direction-switch">
-    <button
+<div className="direction-switch">
+  <button
     onClick={() => setDirection("anticlockwise")}
     className={direction === "anticlockwise" ? "active" : ""}
   >

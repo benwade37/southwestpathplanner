@@ -1,13 +1,33 @@
 import { Link } from "react-router";
 
-function WalkCard({ walk, direction, onStatusChange, onFavorite }) {
+function WalkCard({
+  walk,
+  direction,
+  onStatusChange,
+  onFavorite,
+}) {
+  const walkTitle =
+    direction === "anticlockwise"
+      ? `${walk.start} → ${walk.end}`
+      : `${walk.end} → ${walk.start}`;
+
   return (
     <div className="walk-card">
-  <h2>
-  {direction === "anticlockwise"
-    ? `${walk.start} → ${walk.end}`
-    : `${walk.end} → ${walk.start}`}
-  </h2>
+      {walk.image && (
+        <Link
+          to={`/walk/${walk.id}`}
+          className="walk-card-image-link"
+        >
+          <img
+            src={walk.image}
+            alt={`Illustration of ${walkTitle}`}
+            className="walk-card-image"
+            loading="lazy"
+          />
+        </Link>
+      )}
+
+      <h2>{walkTitle}</h2>
 
       <p>
         <strong>Distance:</strong> {walk.distance}
@@ -26,43 +46,53 @@ function WalkCard({ walk, direction, onStatusChange, onFavorite }) {
         {walk.status === "completed"
           ? "✅ Completed"
           : walk.status === "in-progress"
-          ? "🥾 In Progress"
-          : "⭕ To Do"}
+            ? "🥾 In Progress"
+            : "⭕ To Do"}
       </p>
 
-<div className="status-buttons">
-  <button
-    className={walk.status === "todo" ? "active" : ""}
-    onClick={() => onStatusChange(walk.id, "todo")}
-  >
-    ⭕ To Do
-  </button>
+      <div className="status-buttons">
+        <button
+          className={walk.status === "todo" ? "active" : ""}
+          onClick={() => onStatusChange(walk.id, "todo")}
+        >
+          ⭕ To Do
+        </button>
 
-  <button
-    className={walk.status === "in-progress" ? "active" : ""}
-    onClick={() => onStatusChange(walk.id, "in-progress")}
-  >
-    🥾 In Progress
-  </button>
+        <button
+          className={
+            walk.status === "in-progress" ? "active" : ""
+          }
+          onClick={() =>
+            onStatusChange(walk.id, "in-progress")
+          }
+        >
+          🥾 In Progress
+        </button>
 
-  <button
-    className={walk.status === "completed" ? "active" : ""}
-    onClick={() => onStatusChange(walk.id, "completed")}
-  >
-    ✅ Completed
-  </button>
-</div>
+        <button
+          className={
+            walk.status === "completed" ? "active" : ""
+          }
+          onClick={() =>
+            onStatusChange(walk.id, "completed")
+          }
+        >
+          ✅ Completed
+        </button>
+      </div>
 
       <button onClick={() => onFavorite(walk.id)}>
-        {walk.favorite ? "⭐ Favourite" : "☆ Add Favourite"}
+        {walk.favorite
+          ? "⭐ Favourite"
+          : "☆ Add Favourite"}
       </button>
 
-  <Link
-  to={`/walk/${walk.id}`}
-  className="details-link"
->
-  View Details →
-</Link>
+      <Link
+        to={`/walk/${walk.id}`}
+        className="details-link"
+      >
+        View Details →
+      </Link>
     </div>
   );
 }

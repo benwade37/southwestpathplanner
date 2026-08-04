@@ -31,21 +31,19 @@ function WalkDetail({ walks, direction }) {
         ? "In Progress"
         : "To Do";
 
-
-console.log(walk);
-console.log(walk.image);
-  
   return (
     <main className="walk-detail">
       <Link to="/" className="back-link">
         ← Back to all walks
       </Link>
 
-      <img
-      src={walk.image}
-      alt={walkTitle}
-      className="walk-hero"
-      />
+      {walk.image && (
+        <img
+          src={walk.image}
+          alt={`Illustration of ${walkTitle}`}
+          className="walk-hero"
+        />
+      )}
 
       <header className="walk-detail-header">
         <p className="walk-location">
@@ -61,50 +59,34 @@ console.log(walk.image);
 
       <div className="walk-stats">
         <div className="walk-stat">
-          <span className="walk-stat-icon">
-            🥾
-          </span>
-
+          <span className="walk-stat-icon">🥾</span>
           <span className="walk-stat-label">
             Distance
           </span>
-
           <strong>{walk.distance}</strong>
         </div>
 
         <div className="walk-stat">
-          <span className="walk-stat-icon">
-            ⛰️
-          </span>
-
+          <span className="walk-stat-icon">⛰️</span>
           <span className="walk-stat-label">
             Difficulty
           </span>
-
           <strong>{walk.difficulty}</strong>
         </div>
 
         <div className="walk-stat">
-          <span className="walk-stat-icon">
-            🕒
-          </span>
-
+          <span className="walk-stat-icon">🕒</span>
           <span className="walk-stat-label">
-            Estimated time
+            Estimated Time
           </span>
-
           <strong>{walk.time}</strong>
         </div>
 
         <div className="walk-stat">
-          <span className="walk-stat-icon">
-            📍
-          </span>
-
+          <span className="walk-stat-icon">📍</span>
           <span className="walk-stat-label">
             Status
           </span>
-
           <strong>{statusText}</strong>
         </div>
       </div>
