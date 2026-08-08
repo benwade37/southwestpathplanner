@@ -10,11 +10,22 @@ function WalkDetail({ walks, direction }) {
   if (!walk) {
     return (
       <main className="walk-detail">
-        <h1>Walk not found</h1>
+        <section className="walk-not-found">
+          <div className="walk-not-found-badge">
+            <span className="walk-not-found-icon">🥾</span>
+          </div>
 
-        <Link to="/">
-          ← Back to all walks
-        </Link>
+          <h1>Walk not found</h1>
+
+          <p>
+            Looks like this stretch has wandered off.
+          </p>
+
+          <Link to="/" className="back-to-walks">
+            <span className="back-arrow">←</span>
+            Back to all walks
+          </Link>
+        </section>
       </main>
     );
   }
@@ -33,8 +44,9 @@ function WalkDetail({ walks, direction }) {
 
   return (
     <main className="walk-detail">
-      <Link to="/" className="back-link">
-        ← Back to all walks
+      <Link to="/" className="back-to-walks">
+        <span className="back-arrow">←</span>
+        Back to all walks
       </Link>
 
       {walk.image && (
@@ -60,33 +72,25 @@ function WalkDetail({ walks, direction }) {
       <div className="walk-stats">
         <div className="walk-stat">
           <span className="walk-stat-icon">🥾</span>
-          <span className="walk-stat-label">
-            Distance
-          </span>
+          <span className="walk-stat-label">Distance</span>
           <strong>{walk.distance}</strong>
         </div>
 
         <div className="walk-stat">
           <span className="walk-stat-icon">⛰️</span>
-          <span className="walk-stat-label">
-            Difficulty
-          </span>
+          <span className="walk-stat-label">Difficulty</span>
           <strong>{walk.difficulty}</strong>
         </div>
 
         <div className="walk-stat">
           <span className="walk-stat-icon">🕒</span>
-          <span className="walk-stat-label">
-            Estimated Time
-          </span>
+          <span className="walk-stat-label">Estimated Time</span>
           <strong>{walk.time}</strong>
         </div>
 
         <div className="walk-stat">
           <span className="walk-stat-icon">📍</span>
-          <span className="walk-stat-label">
-            Status
-          </span>
+          <span className="walk-stat-label">Status</span>
           <strong>{statusText}</strong>
         </div>
       </div>

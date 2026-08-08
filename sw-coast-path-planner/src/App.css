@@ -72,6 +72,76 @@
   margin-top: 0;
 }
 
+.walk-not-found {
+  max-width: 560px;
+  margin: 80px auto;
+  padding: 40px 32px;
+  text-align: center;
+  background: #f7f0df;
+  border: 3px solid #163b32;
+  border-radius: 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.walk-not-found-badge {
+  width: 74px;
+  height: 74px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: #163b32;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.walk-not-found-icon {
+  font-size: 2rem;
+}
+
+.walk-not-found h1 {
+  margin-bottom: 12px;
+  color: #163b32;
+}
+
+.walk-not-found p {
+  margin-bottom: 28px;
+  color: #4b514d;
+}
+
+.back-to-walks {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background-color: #163b32;
+  color: #f7f0df;
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  border: 3px solid #d8b35b;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.walk-detail .back-to-walks {
+  margin-bottom: 24px;
+}
+
+.back-to-walks:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+  background-color: #0f2d26;
+}
+
+.back-arrow {
+  font-size: 1.2rem;
+}
+
 .progress-bar {
   width: 100%;
   height: 18px;
@@ -302,7 +372,11 @@
   }
 
   .walk-card {
-    padding: 20px;
+    padding: 0 20px 20px;
+  }
+
+  .walk-card-image-link {
+    margin: 0 -20px 20px;
   }
 }
 
@@ -326,7 +400,11 @@
   }
 
   .walk-card {
-    padding: 18px;
+    padding: 0 18px 18px;
+  }
+
+  .walk-card-image-link {
+    margin: 0 -18px 18px;
   }
 
   .walk-card h2 {
